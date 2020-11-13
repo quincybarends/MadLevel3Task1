@@ -20,4 +20,19 @@ class SummaryFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_summary, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val gameName = arguments?.getString(ARG_GAME_NAME)
+        val gameRating = arguments?.getFloat(ARG_GAME_RATING)
+
+        txt_summary.text =
+            String.format("You rated %s with %.1f stars! Thanks?", gameName, gameRating)
+
+        btn_start_over.setOnClickListener {
+            findNavController().navigate(R.id.action_summaryFragment_to_startFragment)
+
+        }
+    }
 }
